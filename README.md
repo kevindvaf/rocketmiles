@@ -18,9 +18,7 @@ Can I figure out how to test something I've never seen before?? :)
       - [Python 3.6+](#python-36)
     - [Installation](#installation)
   - [Usage](#usage)
-  - [License](#license)
   - [Contact](#contact)
-  - [Acknowledgements](#acknowledgements)
 
 
 
@@ -28,7 +26,7 @@ Can I figure out how to test something I've never seen before?? :)
 ## About The Project
 
     Using the tool of your choice as an automation framework write as many tests as you 
-    think would be sufficient to test the Search functionality on the rocketmiles.com
+    think would be sufficient to test the Search functionality on the rocketmiles.com.a  
 
 
 ### Built With
@@ -39,8 +37,8 @@ Can I figure out how to test something I've never seen before?? :)
   * pipenv 2018.11.26
 
 * Ubuntu 18.04.2 LTS
-  *  python 3.6.7
-  *  behave 1.2.6
+  * python 3.6.7
+  * behave 1.2.6
   * pipenv 2018.11.26
 
 
@@ -66,14 +64,26 @@ python3 -m pip install pipenv
  
 1. Clone the repo
 ```sh
-cd <project directory>
+cd <parent of project directory>
 git clone https:://github.com/kevindvaf/rocketmiles.git
 ```
 2. Create the virtual environment
 ```sh
+cd rocketmiles
 pipenv --three
 ```
-3. Install Python packages
+This should also install all necessary packages from the Pipfile.  
+
+4. Verify installation 
+```sh
+pipenv run python3 --version
+pipenv run pip3 --version
+pipenv run pipenv --version
+pipenv run behave --version
+```
+The paths should be from the venv and the versions shown should match those specified above.
+
+3. Install Python packages if the verification fails
 ```sh
 pipenv install behave
 pipenv install selenium
@@ -81,11 +91,16 @@ pipenv install selenium
 
 ## Usage
 
-Once
+Once everything is installed, try a dry-run. This should check the feature files.
+```sh
+pipenv run behave -d
+```
+If this works, it's time to give the tests a shot.
+```sh
+pipenv run behave
+```
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+As you can see, a few of the step implementations are incorrect and fail. This framework suffers from the same issue that many older frameworks have, manual selection of the object locators. Unless steps are taken when a page is first created and specific, non-volatile selectors are chosen, all tests will be "flaky" to a large extent. Selectors can change from one version to the next, even from one build to the net, and, occasionaly, from one job to the next.
 
 ## Contact
 
@@ -93,10 +108,3 @@ Kevin Ferguson - kferguson@acm.org
 
 Project Link: [https://github.com/kevindvaf/rocketmiles](https://github.com/kevindvaf/rocketmiles)
 
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
